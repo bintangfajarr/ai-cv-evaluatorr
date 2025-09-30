@@ -5,10 +5,10 @@ Backend API system untuk evaluasi CV kandidat dan project reports menggunakan La
 **Version:** 1.0.0  
 **Base URL:** `http://localhost:3000`
 
----
 
 ## Table of Contents
-
+- [Features](#features)
+- [Tech Stack](#tech-stack)
 - [Authentication](#authentication)
   - [Register](#register)
   - [Login](#login)
@@ -24,7 +24,37 @@ Backend API system untuk evaluasi CV kandidat dan project reports menggunakan La
 - [Error Codes](#error-codes)
 
 ---
+## Features
 
+- **Automated CV Screening** - AI-powered matching against job requirements
+- **Project Evaluation** - Detailed scoring of technical deliverables
+- **Asynchronous Processing** - Non-blocking evaluation with status tracking
+- **Multi-format Support** - Upload PDF, DOCX, or TXT files
+- **JWT Authentication** - Secure API access with role-based permissions
+- **Custom Job Descriptions** - Dynamic job posting management
+- **RAG Integration** - Context-aware evaluation using vector search
+- **Retry Logic** - Automatic retry with exponential backoff for API failures
+
+**Key Metrics:**
+- Match Rate: 0-100% compatibility score
+- Project Score: 0-10 quality rating
+- Detailed Breakdown: Individual parameter scores
+- Processing Time: 2-4 minutes average
+---
+## Tech Stack
+
+| Component | Technology | Purpose |
+|-----------|-----------|---------|
+| Runtime | Node.js 20.x | JavaScript server environment |
+| Framework | Express.js | REST API framework |
+| Database | PostgreSQL 15 | Structured data storage |
+| Cache/Queue | Redis 7 | Job queue and caching |
+| Vector DB | ChromaDB | Semantic search for RAG |
+| LLM Provider | OpenRouter | Multi-model LLM access |
+| Authentication | JWT | Token-based auth |
+| File Processing | pdf2json, mammoth | Document parsing |
+
+---
 ## Authentication
 
 ### Register
@@ -271,15 +301,12 @@ Mengupdate informasi user (Admin only).
   "role": "STRING (optional: 'user' or 'admin')",
   "is_active": "BOOLEAN (optional)"
 }
-
+```
 Jika update berhasil, server akan mengembalikan respons:
 
-Status Code: 200
-Response Body:
-
-
-
-json  {
+**Status Code**: 200
+**Response Body**:
+```json  {
     "success": true,
     "data": {
       "id": 2,
@@ -290,109 +317,101 @@ json  {
       "updated_at": "2025-01-20T12:00:00Z"
     }
   }
-
+```
 Jika user tidak ditemukan, server akan mengembalikan respons:
 
-Status Code: 404
-Response Body:
-
-
-
-json  {
+**Status Code**: 404
+**Response Body**:
+```json  {
     "success": false,
     "message": "User not found"
   }
-
+```
 Jika username sudah digunakan, server akan mengembalikan respons:
 
-Status Code: 409
-Response Body:
-
-
-
-json  {
+**Status Code**: 409
+**Response Body**:
+```json  {
     "success": false,
     "message": "Username already exists"
   }
+  ```
 
 Jika email sudah digunakan, server akan mengembalikan respons:
 
-Status Code: 409
-Response Body:
+**Status Code**: 409
+**Response Body**:
 
 
 
-json  {
+```json  {
     "success": false,
     "message": "Email already exists"
   }
-
+```
 Jika bukan admin, server akan mengembalikan respons:
 
-Status Code: 403
-Response Body:
+**Status Code**: 403
+**Response Body**:
 
-
-
-json  {
+```json  {
     "success": false,
     "message": "Insufficient permissions"
   }
-
-Delete User
+```
+### Delete User
 Menghapus user (Admin only).
 
-Metode: DELETE
-URL: /auth/users/:id
-Headers: Authorization: Bearer <token>
-URL Parameter: id = User ID
+**Metode**: DELETE
+**URL**: `/auth/users/:id`
+**Headers**: `Authorization: Bearer <token>`
+**URL Parameter**: id = User ID
 Jika berhasil dihapus, server akan mengembalikan respons:
 
 Status Code: 200
 Response Body:
 
-
-
-json  {
+```json  {
     "success": true,
     "message": "User deleted successfully"
   }
-
+```
 Jika user tidak ditemukan, server akan mengembalikan respons:
 
-Status Code: 404
-Response Body:
+**Status Code**: 404
+**Response Body**:
 
 
 
-json  {
+```json  {
     "success": false,
     "message": "User not found"
   }
-
+```
 Jika mencoba menghapus diri sendiri, server akan mengembalikan respons:
 
-Status Code: 400
-Response Body:
+**Status Code**: 400
+**Response Body**:
 
 
 
-json  {
+```json  {
     "success": false,
     "message": "Cannot delete your own account"
   }
-
+```
 Jika bukan admin, server akan mengembalikan respons:
 
-Status Code: 403
-Response Body:
+**Status Code**: 403
+**Response Body**:
 
 
 
-json  {
+```json  {
     "success": false,
     "message": "Insufficient permissions"
   }
+  ```
 ---
 
 ## Evaluation
@@ -624,6 +643,7 @@ Mendapatkan status dan hasil evaluasi.
 - Stop polling saat status = completed atau failed
 
 ---
+
 
 ## Setup & Installation
 
