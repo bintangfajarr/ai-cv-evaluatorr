@@ -14,6 +14,8 @@ Backend API system untuk evaluasi CV kandidat dan project reports menggunakan La
   - [Login](#login)
   - [Get Current User](#get-current-user)
   - [Get All Users](#get-all-users)
+  - [Update User](#update-user)
+  - [Delete Users](#delete-users)
 - [Evaluation](#evaluation)
   - [Upload Files](#upload-files)
   - [Trigger Evaluation](#trigger-evaluation)
@@ -250,7 +252,147 @@ Mendapatkan daftar semua user (Admin only).
     "message": "Insufficient permissions"
   }
   ```
+### Update User
 
+Mengupdate informasi user (Admin only).
+
+- **Metode**: PUT
+- **URL**: `/auth/users/:id`
+- **Headers**: 
+  - `Authorization: Bearer <token>`
+  - `Content-Type: application/json`
+- **URL Parameter**: `id` = User ID
+- **Request Body**:
+```json
+{
+  "username": "STRING (optional)",
+  "email": "STRING (optional)",
+  "password": "STRING (optional)",
+  "role": "STRING (optional: 'user' or 'admin')",
+  "is_active": "BOOLEAN (optional)"
+}
+
+Jika update berhasil, server akan mengembalikan respons:
+
+Status Code: 200
+Response Body:
+
+
+
+json  {
+    "success": true,
+    "data": {
+      "id": 2,
+      "username": "john_doe_updated",
+      "email": "john_updated@example.com",
+      "role": "user",
+      "is_active": true,
+      "updated_at": "2025-01-20T12:00:00Z"
+    }
+  }
+
+Jika user tidak ditemukan, server akan mengembalikan respons:
+
+Status Code: 404
+Response Body:
+
+
+
+json  {
+    "success": false,
+    "message": "User not found"
+  }
+
+Jika username sudah digunakan, server akan mengembalikan respons:
+
+Status Code: 409
+Response Body:
+
+
+
+json  {
+    "success": false,
+    "message": "Username already exists"
+  }
+
+Jika email sudah digunakan, server akan mengembalikan respons:
+
+Status Code: 409
+Response Body:
+
+
+
+json  {
+    "success": false,
+    "message": "Email already exists"
+  }
+
+Jika bukan admin, server akan mengembalikan respons:
+
+Status Code: 403
+Response Body:
+
+
+
+json  {
+    "success": false,
+    "message": "Insufficient permissions"
+  }
+
+Delete User
+Menghapus user (Admin only).
+
+Metode: DELETE
+URL: /auth/users/:id
+Headers: Authorization: Bearer <token>
+URL Parameter: id = User ID
+Jika berhasil dihapus, server akan mengembalikan respons:
+
+Status Code: 200
+Response Body:
+
+
+
+json  {
+    "success": true,
+    "message": "User deleted successfully"
+  }
+
+Jika user tidak ditemukan, server akan mengembalikan respons:
+
+Status Code: 404
+Response Body:
+
+
+
+json  {
+    "success": false,
+    "message": "User not found"
+  }
+
+Jika mencoba menghapus diri sendiri, server akan mengembalikan respons:
+
+Status Code: 400
+Response Body:
+
+
+
+json  {
+    "success": false,
+    "message": "Cannot delete your own account"
+  }
+
+Jika bukan admin, server akan mengembalikan respons:
+
+Status Code: 403
+Response Body:
+
+
+
+json  {
+    "success": false,
+    "message": "Insufficient permissions"
+  }
 ---
 
 ## Evaluation
