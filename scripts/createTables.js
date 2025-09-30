@@ -71,12 +71,12 @@ const createTables = async() => {
         created_at TIMESTAMP DEFAULT NOW()
       );
     `);
-        console.log('✓ Table "scoring_rubrics" created');
+        console.log('Table "scoring_rubrics" created');
 
-        console.log('\n✅ All tables created successfully!');
+        console.log('\nAll tables created successfully!');
         process.exit(0);
     } catch (error) {
-        console.error('❌ Error creating tables:', error.message);
+        console.error('Error creating tables:', error.message);
         process.exit(1);
     }
 };
