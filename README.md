@@ -306,7 +306,8 @@ Jika update berhasil, server akan mengembalikan respons:
 
 **Status Code**: 200
 **Response Body**:
-```json  {
+```json  
+{
     "success": true,
     "data": {
       "id": 2,
@@ -322,7 +323,8 @@ Jika user tidak ditemukan, server akan mengembalikan respons:
 
 **Status Code**: 404
 **Response Body**:
-```json  {
+```json 
+ {
     "success": false,
     "message": "User not found"
   }
@@ -331,7 +333,8 @@ Jika username sudah digunakan, server akan mengembalikan respons:
 
 **Status Code**: 409
 **Response Body**:
-```json  {
+```json 
+ {
     "success": false,
     "message": "Username already exists"
   }
@@ -344,7 +347,8 @@ Jika email sudah digunakan, server akan mengembalikan respons:
 
 
 
-```json  {
+```json 
+{
     "success": false,
     "message": "Email already exists"
   }
@@ -354,7 +358,8 @@ Jika bukan admin, server akan mengembalikan respons:
 **Status Code**: 403
 **Response Body**:
 
-```json  {
+```json 
+ {
     "success": false,
     "message": "Insufficient permissions"
   }
@@ -371,7 +376,8 @@ Jika berhasil dihapus, server akan mengembalikan respons:
 Status Code: 200
 Response Body:
 
-```json  {
+```json  
+{
     "success": true,
     "message": "User deleted successfully"
   }
@@ -383,7 +389,8 @@ Jika user tidak ditemukan, server akan mengembalikan respons:
 
 
 
-```json  {
+```json 
+ {
     "success": false,
     "message": "User not found"
   }
@@ -395,7 +402,8 @@ Jika mencoba menghapus diri sendiri, server akan mengembalikan respons:
 
 
 
-```json  {
+```json 
+ {
     "success": false,
     "message": "Cannot delete your own account"
   }
@@ -407,7 +415,8 @@ Jika bukan admin, server akan mengembalikan respons:
 
 
 
-```json  {
+```json  
+{
     "success": false,
     "message": "Insufficient permissions"
   }
