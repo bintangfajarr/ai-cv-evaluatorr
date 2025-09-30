@@ -282,6 +282,8 @@ Mendapatkan daftar semua user (Admin only).
     "message": "Insufficient permissions"
   }
   ```
+  ---
+
 ### Update User
 
 Mengupdate informasi user (Admin only).
@@ -364,6 +366,8 @@ Jika bukan admin, server akan mengembalikan respons:
     "message": "Insufficient permissions"
   }
 ```
+---
+
 ### Delete User
 Menghapus user (Admin only).
 
