@@ -584,9 +584,6 @@ JWT_EXPIRES_IN=7d
 
 ---
 
-**Version:** 1.0.0  
-**Last Updated:** January 2025  
-**Maintained By:** AI CV Evaluator Team
+
 ```
 
-Simpan file di atas sebagai `README.md`. Format sudah sesuai dengan style yang Anda contohkan.
