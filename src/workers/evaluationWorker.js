@@ -8,7 +8,7 @@ import { updateEvaluationStatus, updateEvaluationResults, getEvaluationById } fr
 evaluationQueue.process(async(job) => {
     const { evaluationId } = job.data;
 
-    console.log(`\n📋 Processing evaluation: ${evaluationId}`);
+    console.log(`\nProcessing evaluation: ${evaluationId}`);
 
     try {
         // Update status to processing
@@ -30,11 +30,11 @@ evaluationQueue.process(async(job) => {
 
         // Save results to database
         await updateEvaluationResults(evaluationId, results);
-        console.log('✓ Results saved to database');
+        console.log('Results saved to database');
 
         return results;
     } catch (error) {
-        console.error(`❌ Evaluation failed: ${error.message}`);
+        console.error(`Evaluation failed: ${error.message}`);
 
         // Update status to failed
         await updateEvaluationStatus(evaluationId, 'failed', error.message);
@@ -45,15 +45,15 @@ evaluationQueue.process(async(job) => {
 
 // Event listeners
 evaluationQueue.on('completed', (job, result) => {
-    console.log(`✅ Job ${job.id} completed successfully`);
+    console.log(` Job ${job.id} completed successfully`);
 });
 
 evaluationQueue.on('failed', (job, err) => {
-    console.error(`❌ Job ${job.id} failed:`, err.message);
+    console.error(`Job ${job.id} failed:`, err.message);
 });
 
 evaluationQueue.on('stalled', (job) => {
-    console.warn(`⚠️  Job ${job.id} stalled`);
+    console.warn(`Job ${job.id} stalled`);
 });
 
-console.log('✓ Evaluation worker started and listening for jobs...');
+console.log('Evaluation worker started and listening for jobs...');

@@ -73,7 +73,6 @@ productivity.
   `;
 
     try {
-        // Update di PostgreSQL
         await pool.query(`
       UPDATE job_descriptions 
       SET content = $1, updated_at = NOW()
@@ -82,7 +81,6 @@ productivity.
 
         console.log(' Updated in PostgreSQL');
 
-        // Update di ChromaDB untuk RAG
         await storeJobDescription('job-backend-2025', 'Product Engineer (Backend) 2025', newContent);
 
         console.log(' Updated in ChromaDB');

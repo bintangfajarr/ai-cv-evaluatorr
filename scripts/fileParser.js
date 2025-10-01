@@ -4,8 +4,8 @@ import fs from 'fs/promises';
 
 /**
  * Parse file berdasarkan extension
- * @param {string} filePath - Path ke file
- * @returns {Promise<string>} - Text content dari file
+ * @param {string} filePath 
+ * @returns {Promise<string>} 
  */
 export const parseFile = async(filePath) => {
     try {

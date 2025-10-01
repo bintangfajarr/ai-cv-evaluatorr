@@ -140,17 +140,14 @@ const seedVectorDB = async() => {
     try {
         console.log('Seeding Vector Database...\n');
 
-        // Initialize collections
         await initializeCollections();
 
-        // Store job description
         await storeJobDescription(
             'job-backend-2025',
             'Product Engineer (Backend) 2025',
             jobDescription
         );
 
-        // Store scoring rubrics
         for (let i = 0; i < scoringRubrics.length; i++) {
             const rubric = scoringRubrics[i];
             await storeScoringRubric(

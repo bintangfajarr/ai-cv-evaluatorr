@@ -27,36 +27,36 @@ export const runEvaluationPipeline = async(cvText, projectText) => {
         // Step 1: Extract CV information
         console.log('Step 1: Extracting CV information...');
         const extractedCV = await extractCVInfo(cvText);
-        console.log('✓ CV info extracted');
+        console.log('CV info extracted');
 
         // Step 2: Retrieve job context from RAG
         console.log('\nStep 2: Retrieving job context...');
         const jobContext = await queryJobContext('backend engineer requirements AI LLM');
-        console.log('✓ Job context retrieved');
+        console.log('Job context retrieved');
 
         // Step 3: Evaluate CV match
         console.log('\nStep 3: Evaluating CV match...');
         const cvEvaluation = await evaluateCVMatch(extractedCV, jobContext);
-        console.log('✓ CV evaluation completed');
+        console.log(' CV evaluation completed');
 
         // Step 4: Calculate CV match rate
         const cvMatchRate = calculateCVMatchRate(cvEvaluation.scores);
-        console.log(`✓ CV Match Rate: ${(cvMatchRate * 100).toFixed(0)}%`);
+        console.log(`CV Match Rate: ${(cvMatchRate * 100).toFixed(0)}%`);
 
         // Step 5: Extract project information
         console.log('\nStep 5: Extracting project information...');
         const extractedProject = await extractProjectInfo(projectText);
-        console.log('✓ Project info extracted');
+        console.log(' Project info extracted');
 
         // Step 6: Retrieve scoring rubric from RAG
         console.log('\nStep 6: Retrieving scoring rubric...');
         const scoringRubric = await queryScoringRubric('project evaluation code quality resilience');
-        console.log('✓ Scoring rubric retrieved');
+        console.log('Scoring rubric retrieved');
 
         // Step 7: Evaluate project (first pass)
         console.log('\nStep 7: Evaluating project (first pass)...');
         const projectEvaluation = await evaluateProject(extractedProject, scoringRubric);
-        console.log('✓ Project evaluation completed');
+        console.log('Project evaluation completed');
 
         // Step 8: Refine project evaluation (second pass)
         console.log('\nStep 8: Refining project evaluation...');
@@ -64,11 +64,11 @@ export const runEvaluationPipeline = async(cvText, projectText) => {
             projectEvaluation.scores,
             projectEvaluation.feedback
         );
-        console.log('✓ Project evaluation refined');
+        console.log('Project evaluation refined');
 
         // Step 9: Calculate project score
         const projectScore = calculateProjectScore(refinedProjectEvaluation.scores);
-        console.log(`✓ Project Score: ${projectScore.toFixed(1)}/10`);
+        console.log(`Project Score: ${projectScore.toFixed(1)}/10`);
 
         // Step 10: Generate overall summary
         console.log('\nStep 10: Generating overall summary...');

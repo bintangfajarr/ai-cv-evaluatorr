@@ -2,9 +2,7 @@ import mammoth from 'mammoth';
 import fs from 'fs/promises';
 import PDFParser from 'pdf2json';
 
-/**
- * Parse file berdasarkan extension
- */
+
 export const parseFile = async(filePath) => {
     try {
         const ext = filePath.split('.').pop().toLowerCase();
@@ -29,9 +27,7 @@ export const parseFile = async(filePath) => {
     }
 };
 
-/**
- * Parse PDF file using pdf2json
- */
+
 const parsePDF = (filePath) => {
     return new Promise((resolve, reject) => {
         const pdfParser = new PDFParser();
@@ -49,25 +45,19 @@ const parsePDF = (filePath) => {
     });
 };
 
-/**
- * Parse DOCX file
- */
+
 const parseDOCX = async(filePath) => {
     const result = await mammoth.extractRawText({ path: filePath });
     return result.value;
 };
 
-/**
- * Parse TXT file
- */
+
 const parseTXT = async(filePath) => {
     const content = await fs.readFile(filePath, 'utf-8');
     return content;
 };
 
-/**
- * Clean and normalize text
- */
+
 export const cleanText = (text) => {
     return text
         .replace(/\r\n/g, '\n')

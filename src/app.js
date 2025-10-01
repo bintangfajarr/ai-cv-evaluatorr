@@ -48,6 +48,6 @@ app.use((err, req, res, next) => {
 
 // Start server
 app.listen(PORT, () => {
-    console.log(`\n🚀 Server running on http://localhost:${PORT}`);
-    console.log(`📝 API Documentation: http://localhost:${PORT}`);
+    console.log(`\nServer running on http://localhost:${PORT}`);
+    console.log(`API Documentation: http://localhost:${PORT}`);
 });

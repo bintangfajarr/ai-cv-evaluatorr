@@ -1,15 +1,8 @@
 import openRouterClient from '../config/llm.js';
 
-/**
- * Generate embeddings using OpenRouter
- * Note: Not all models support embeddings, so we'll use a simple approach
- */
+
 export const generateEmbedding = async(text) => {
     try {
-        // For free models on OpenRouter, we'll use a simple text-based approach
-        // In production, you'd use a proper embedding model like text-embedding-ada-002
-
-        // Simple fallback: use the text itself for similarity (not ideal but works)
         return text.toLowerCase().split(/\s+/).slice(0, 100); // First 100 words
     } catch (error) {
         console.error('Error generating embedding:', error.message);

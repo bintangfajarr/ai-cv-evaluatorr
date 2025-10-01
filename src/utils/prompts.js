@@ -173,9 +173,6 @@ Return refined evaluation:
 Return ONLY the JSON object.`;
 };
 
-/**
- * Prompt untuk generate overall summary
- */
 export const generateSummaryPrompt = (cvScores, cvFeedback, projectScores, projectFeedback, cvMatchRate, projectScore) => {
     return `You are writing a final evaluation summary for a backend engineer candidate.
 
